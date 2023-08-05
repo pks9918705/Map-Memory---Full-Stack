@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv'); // for hidding the sensitive information like key
 
 const pinRoute = require('./routes/Pin');
+const userRoute = require('./routes/User');
 
 
 
@@ -30,9 +31,11 @@ mongoose.connect(process.env.MONGO_URL, {
 
 // Pin route 
 app.use("/api/pins", pinRoute)
+// User route
+app.use("/api/users", userRoute)
 
 
-const port = 3000;
+const port = 8000;
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });

@@ -23,11 +23,11 @@ const pinSchema = new Schema({
         type: Number,
         min:1,max:5
     },
-    lat:{
+    latitude:{
         type:Number,
         require:true,
     },
-    long:{
+    longitude:{
         type:Number,
         require:true,
     }
