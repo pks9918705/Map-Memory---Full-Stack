@@ -1,9 +1,11 @@
 .card {
   width: 250px;
+  max-width: fit-content;
   height: 250px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+
 }
 
 label {
@@ -22,4 +24,19 @@ label {
 .desc{
   font-size: larger;
   font-weight: 500;
+}
+.input{
+  border: none;
+  width: 210px;
+}
+
+.btn{
+  background-color: tomato;
+  color: white;
+  border: none;
+  padding: 8px 0px;
+  margin-top: 12px;
+  font-weight: 900;
+  cursor: pointer;
+
 }
