@@ -42,6 +42,9 @@ function App() {
   }, [])
   useEffect(() => {
     console.log("new pin", newPlace)
+    setPlace("")
+    setRating(1)
+    setReview("")
 
   }, [newPlace])
 
@@ -123,7 +126,7 @@ function App() {
               
               <label htmlFor="">Infromation</label>
               <span className='username'>Created by <b>{pin.username}</b></span>
-              <span className='date'>{moment().format("MMM Do YY") }</span>
+              <span className='date'>{moment(pin.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</span>
             </div>
             {/* You are here */}
           </Popup>}
@@ -145,13 +148,7 @@ function App() {
             <input placeholder="Enter Review" value={review} onChange={(e) => setReview(e.target.value)} />
 
             <label htmlFor="">Rating</label>
-            <select>
-              <option value="1"  onChange={() => setRating(1)}>1</option>
-              <option value="2" onChange={() => setRating(2)}>2</option>
-              <option value="3" onChange={() => setRating(3)}>3</option>
-              <option value="4" onChange={() => setRating(4)}>4</option>
-              <option value="5" onChange={() => setRating(5)}>5</option>
-            </select>
+            <input placeholder="Enter Rating b/w 1 to 5 " value={rating} onChange={(e)=>setRating(e.target.value)}/>
 
             <button className="btn">Add</button>
 
