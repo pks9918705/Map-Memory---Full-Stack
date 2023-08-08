@@ -3,18 +3,25 @@ import "./App.css"
 import Map, { Marker, Popup } from 'react-map-gl';
 import StarIcon from '@mui/icons-material/Star';
 import axios from "axios"
-// import { format } from 'timeago.js';
+
 import moment from "moment"
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { useEffect, useState } from "react";
+import Navbar from "./Navbar";
+import Register from "./components/Register";
+import Login from "./components/Login";
 
 function App() {
 
 
-  const currentUser = "Priyadnshu22"
+  const myStorage=window.localStorage;
+  // const currentUser = ""
+  const [currentUser,setCurrentUser]=useState(null)
   const [pins, setPins] = useState([])
   const [currentPlacedId, setCurrentPlacedId] = useState("")
   const [newPlace, setNewPlace] = useState(null)
+  const [showRegister,setShowRegister] = useState(false)
+  const [showLogin,setShowLogin] = useState(true)
   const [view, setView] = useState({
     latitude: 37.8,
     longitude: -122.4,
@@ -95,9 +102,12 @@ function App() {
   };
   
   return (
+    <>
+    <Navbar setShowRegister={setShowRegister} setShowLogin={setShowLogin} setCurrentUser={setCurrentUser} currentUser={currentUser} myStorage={myStorage}/>
+    {/* MAP  */}
     <Map
       initialViewState={view}
-      style={{ width: "80vw", height: "100vh" }}
+      style={{ width: "100vw", height: "90vh" }}
       mapStyle="mapbox://styles/mapbox/streets-v9"
       mapboxAccessToken={process.env.REACT_APP_MAPBOX}
       onDblClick={handleDoubleClick}
@@ -107,7 +117,7 @@ function App() {
 
       {pins && pins.map(pin => (
         <div key={pin._id}>
-          <Marker longitude={pin.longitude} latitude={pin.latitude} color="red" onClick={() => handleMarkerclick(pin._id, pin.latitude, pin.longitude)} />
+          <Marker longitude={pin.longitude} latitude={pin.latitude} color={(currentUser===pin.username?"tomato":"pink")} onClick={() => handleMarkerclick(pin._id, pin.latitude, pin.longitude)} />
 
           {currentPlacedId === pin._id && <Popup longitude={pin.longitude} latitude={pin.latitude}
             anchor="top-left" closeButton={true} closeOnClick={false} onClose={() => setCurrentPlacedId(null)}
@@ -159,7 +169,15 @@ function App() {
         </form>
       </Popup>}  
 
+          
+           
+
     </Map >
+   {showRegister && <Register myStorage={myStorage} setCurrentUser={setCurrentUser} setShowRegister={setShowRegister}/>} 
+   {showLogin && <Login setShowLogin={setShowLogin} myStorage={myStorage} setCurrentUser={setCurrentUser} />}
+     
+    </>
+    
   );
 }
 
