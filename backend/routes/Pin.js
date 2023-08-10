@@ -4,8 +4,9 @@ const express = require('express');
 const router = express.Router();
 //create a Pin
 router.post('/',async(req,res)=>{
-
+    console.log(req.body)
     const newPin=new Pin(req.body)
+   
 
     //saving the new pin
     try{

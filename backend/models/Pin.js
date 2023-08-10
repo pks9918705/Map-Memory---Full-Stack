@@ -6,7 +6,6 @@ const pinSchema = new Schema({
     username:{
         type: String,
         require:true,
-        unique: true,
         max:10,
         min:3
     },
@@ -14,7 +13,7 @@ const pinSchema = new Schema({
         type: String,
         min:5,
     },
-    desc:{
+    description:{
         type: String,
         min:5,
 

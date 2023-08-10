@@ -6,7 +6,7 @@ const userSchema = new Schema({
     username:{
         type: String,
         require:true,
-        unique: true,
+        // unique: true,
         max:10,
         min:3
     },
