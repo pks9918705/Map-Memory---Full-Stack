@@ -1,14 +1,31 @@
 import React from "react";
+import { useValue } from "../../context/authContext";
+
 
 
 export default function Navbar(props) {
 
+    //  const {setCurrentUser,setShowRegister,setShowLogin}=props
+
+    const { setAuthenticated,setUser} = useValue();
      
 
+    function deleteCookie(cookieName) {
+      document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    }
+    
+     
+
+
     const handleLogout=()=>{
+      deleteCookie('user_id');
       props.setCurrentUser(null)
       props.myStorage.clear()
       props.setShowLogin(true)
+      setAuthenticated(false)
+      setUser(null)
+      
+
     }
 
     function handleLogin(){

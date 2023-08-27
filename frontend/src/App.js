@@ -3,16 +3,20 @@ import "./App.css"
 import Map, { Marker, Popup } from 'react-map-gl';
 import StarIcon from '@mui/icons-material/Star';
 import axios from "axios"
+import { DateTime } from 'luxon';
 
-import moment from "moment"
+
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { useEffect, useState } from "react";
-import Navbar from "./Navbar";
-import Register from "./components/Register";
-import Login from "./components/Login";
+import Navbar from "./components/Navbar/Navbar.jsx"
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import { useValue } from "./context/authContext";
 
 function App() {
 
+  const { user, authenticated } = useValue();
+   
 
   const myStorage=window.localStorage;
   // const currentUser = ""
@@ -21,7 +25,7 @@ function App() {
   const [currentPlacedId, setCurrentPlacedId] = useState("")
   const [newPlace, setNewPlace] = useState(null)
   const [showRegister,setShowRegister] = useState(false)
-  const [showLogin,setShowLogin] = useState(true)
+  const [showLogin,setShowLogin] = useState(false)
   const [view, setView] = useState({
     latitude: 37.8,
     longitude: -122.4,
@@ -33,6 +37,17 @@ function App() {
   const [review, setReview] = useState("")
   const [rating, setRating] = useState("")
 
+  useEffect(()=>{
+
+   if( authenticated && user) {
+     setCurrentUser(user.username)
+     console.log("User is authenticated")
+   }
+
+    
+
+
+  },[])
 
   useEffect(() => {
 
@@ -136,7 +151,7 @@ function App() {
               
               <label htmlFor="">Infromation</label>
               <span className='username'>Created by <b>{pin.username}</b></span>
-              <span className='date'>{moment(pin.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</span>
+              <span className='date'>{DateTime.fromISO(pin.createdAt).toFormat('MMMM dd yyyy, hh:mm:ss a')}</span>
             </div>
             {/* You are here */}
           </Popup>}
@@ -162,9 +177,9 @@ function App() {
 
             <button className="btn">Add</button>
 
-           {/* <label htmlFor="">Infromation</label>
-          <span className='username'>Created by <b>kkkkbk</b></span>
-          <span className='date'>{format(new Date())}</span>   */}
+           <label htmlFor="">Infromation</label>
+          <span className='username'>Created by <b>{currentUser}</b></span>
+            
            </div>
         </form>
       </Popup>}  

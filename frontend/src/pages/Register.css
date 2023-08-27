@@ -1,0 +1,37 @@
+ 
+  .registerBtn{
+    margin-top: 15px;
+    padding: 5px;
+    font-size: 1rem;
+    border-radius: 20px;
+  }
+  
+  .register-container form input{
+    padding: 10px;
+     
+    
+    margin-bottom: 3px;
+    border-radius: 2px;
+  }
+ 
+
+.register-container {
+  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: fit-content;
+  
+  /* Add border properties */
+  border: 2px solid #ccc;
+  padding: 20px;
+}
+
+.flex-column{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}

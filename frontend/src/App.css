@@ -81,7 +81,7 @@ label {
 
 /* Register  */
  
-.register-container form{
+/* .register-container form{
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -110,7 +110,7 @@ label {
    width: 500px;
    
    
-}
+} */
 .success{
   color: green;
 }

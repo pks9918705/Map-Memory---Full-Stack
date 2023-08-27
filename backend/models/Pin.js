@@ -7,7 +7,7 @@ const pinSchema = new Schema({
         type: String,
         require:true,
         max:10,
-        min:3
+        min:3 
     },
     title:{
         type: String,
